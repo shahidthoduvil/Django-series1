@@ -1,0 +1,100 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        .post-list {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .post h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .post p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .post .post-image {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .post .post-actions {
+            margin-top: 10px;
+        }
+        .post .post-actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .navbar {
+            background-color: #1877f2; /* Facebook blue color */
+            padding: 10px 0;
+            text-align: center;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 20px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <body>
+        <div class="navbar">
+            <a href="#">Home</a>
+            <a href="createpost">CreatePost</a>
+            <a href="updatepost">UpdatePost</a>
+            <a href="#"></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">logout</a>
+        
+            {% else %}
+            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'register' %}">register</a>
+            {% endif %}
+        </div>
+
+
+        <div class="post-list">
+
+            {% for i in post %}
+            <div class="post">
+                <h3>{{i.title}}</h3>
+                <p>{{i.description}}</p>
+                <img class="post-image"  src="{{i.image.url}}" alt="Image 1">
+                <div class="post-actions">
+                    <a href="#">Like</a>
+                    <a href="#">Comment</a>
+                    <a href="updatepost/">update</a>
+                </div>
+            </div>
+            {% endfor %}
+       
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>
